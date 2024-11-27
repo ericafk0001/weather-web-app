@@ -61,11 +61,21 @@ function displayWeatherInfo(data) {
   descDisplay.classList.add("desc-display");
   weatherEmoji.classList.add("weather-emoji");
 
+  const tempValue = parseFloat(tempDisplay.textContent.slice(0, -2));
+  if (tempValue < 50) {
+    tempDisplay.style.color = "#1999e3";
+  } else if (tempValue >= 50 && tempValue <= 80) {
+    tempDisplay.style.color = "#e69812";
+  } else {
+    tempDisplay.style.color = "#de2410";
+  }
+
   card.appendChild(cityDisplay);
   card.appendChild(tempDisplay);
   card.appendChild(humidityDisplay);
   card.appendChild(descDisplay);
   card.appendChild(weatherEmoji);
+  console.log(data);
 }
 
 function getweatherEmoji(weatherId) {
