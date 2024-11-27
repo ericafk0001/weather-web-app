@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #171717;
+  margin: 0;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  color: whitesmoke;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-form {
+  margin: 20px;
+}
+
+.city-input {
+  padding: 10px;
+  font-size: 1.75rem;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  width: 300px;
+  background-color: #5c5c5c;
+  color: white;
+  transition: border-color 0.3s ease;
+}
+
+.city-input:focus {
+  border-color: #ff0000;
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 1.75rem;
+  background-color: rgb(20, 149, 20);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(2, 108, 2);
+}
+
+.card {
+  background: linear-gradient(180deg, #1e3a8a 0%, #111827 100%);
+  border-radius: 15px;
+  padding: 50px;
+  box-shadow: 2px 2px 5px black;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.city-display,
+.temp-display {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: whitesmoke;
+  margin-bottom: 25px;
+}
+
+.humidity-display {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.desc-display {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.69rem;
+  font-style: italic;
+}
+
+.weather-emoji {
+  font-size: 7rem;
+}
+
+.error-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.36);
+}
