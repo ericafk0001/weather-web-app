@@ -40,32 +40,6 @@ function displayWeatherInfo(data) {
     weather: [{ description, id }],
   } = data;
 
-  const toCelsius = (kelvin) => kelvin - 273.15;
-  const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
-
-  const updateTemperatureDisplay = (temp, unit) => {
-    let displayTemp;
-
-    if (unit === "F") {
-      displayTemp = toFahrenheit(temp).toFixed(1);
-    } else if (unit === "C") {
-      displayTemp = toCelsius(temp).toFixed(1);
-    }
-
-    tempDisplay.textContent = `${displayTemp}°${unit}`;
-  };
-
-  let currentUnit = "F";
-
-  const toggleButton = document.querySelectorAll("toggle-convert");
-
-  toggleButton.addEventListener("click", () => {
-    event.preventDefault();
-    currentUnit = currentUnit === "F" ? "C" : "F";
-    toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
-    updateTemperatureDisplay(temp, currentUnit);
-  });
-
   card.textContent = "";
   card.style.display = "flex";
 
@@ -76,7 +50,7 @@ function displayWeatherInfo(data) {
   const weatherEmoji = document.createElement("p");
 
   cityDisplay.textContent = city;
-  updateTemperatureDisplay(temp, currentUnit);
+  tempDisplay.textContent = `${((temp - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
   humidityDisplay.textContent = `Humidity: ${humidity}%`;
   descDisplay.textContent = description;
   weatherEmoji.textContent = getweatherEmoji(id);
