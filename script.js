@@ -1,7 +1,36 @@
 const weatherForm = document.querySelector(".weather-form");
 const cityInput = document.querySelector(".city-input");
 const card = document.querySelector(".card");
+const toggleButton = document.querySelector(".toggle-convert");
 const apiKey = "98809575035e7d74e62b71d239fb1e98";
+
+let currentUnit = "F";
+let currentTemp = 0;
+let tempDisplay
+
+const toCelsius = (kelvin) => kelvin - 273.15;
+const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
+
+function updateTemperatureDisplay(temp, unit) {
+  let displayTemp;
+
+  if (unit === "F") {
+    displayTemp = toFahrenheit(temp).toFixed(1);
+  } else if (unit === "C") {
+    displayTemp = toCelsius(temp).toFixed(1);
+  }
+  if (tempDisplay) {
+    tempDisplay.textContent = `${displayTemp}°${unit}`;
+  }
+};
+
+toggleButton.addEventListener("click", () => {
+  currentUnit = currentUnit === "F" ? "C" : "F";
+  toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
+  updateTemperatureDisplay(currentTemp, currentUnit);
+});
+
+
 
 weatherForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -39,38 +68,13 @@ function displayWeatherInfo(data) {
     main: { temp, humidity },
     weather: [{ description, id }],
   } = data;
-
-  const toCelsius = (kelvin) => kelvin - 273.15;
-  const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
-
-  const updateTemperatureDisplay = (temp, unit) => {
-    let displayTemp;
-
-    if (unit === "F") {
-      displayTemp = toFahrenheit(temp).toFixed(1);
-    } else if (unit === "C") {
-      displayTemp = toCelsius(temp).toFixed(1);
-    }
-
-    tempDisplay.textContent = `${displayTemp}°${unit}`;
-  };
-
-  let currentUnit = "F";
-
-  const toggleButton = document.querySelectorAll("toggle-convert");
-
-  toggleButton.addEventListener("click", () => {
-    event.preventDefault();
-    currentUnit = currentUnit === "F" ? "C" : "F";
-    toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
-    updateTemperatureDisplay(temp, currentUnit);
-  });
+  currentTemp = temp;
 
   card.textContent = "";
   card.style.display = "flex";
 
   const cityDisplay = document.createElement("h1");
-  const tempDisplay = document.createElement("p");
+  tempDisplay = document.createElement("p");
   const humidityDisplay = document.createElement("p");
   const descDisplay = document.createElement("p");
   const weatherEmoji = document.createElement("p");
