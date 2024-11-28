@@ -8,28 +8,23 @@ let currentUnit = "F";
 let currentTemp = 0;
 let tempDisplay;
 
-function convertTempBtn() {
-  toggleButton.addEventListener("click", () => {
-    currentUnit = currentUnit === "F" ? "C" : "F";
-    if (window.innerWidth < 712) {
-      toggleButton.textContent = currentUnit;
-    } else {
-      toggleButton.textContent = `Switch to °${
-        currentUnit === "F" ? "C" : "F"
-      }`;
-    }
-
-    updateTemperatureDisplay(currentTemp, currentUnit);
-  });
+function handleResize() {
+  if (window.innerWidth < 712) {
+    toggleButton.textContent = currentUnit;
+  } else {
+    toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
+  }
 }
 
-if (window.innerWidth < 712) {
-  toggleButton.textContent = currentUnit;
-} else {
-  toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
-}
 
-window.addEventListener("resize", convertTempBtn());
+toggleButton.addEventListener("click", () => {
+  currentUnit = currentUnit === "F" ? "C" : "F";
+  handleResize();
+  updateTemperatureDisplay(currentTemp, currentUnit);
+});
+
+
+window.addEventListener("resize", handleResize);
 
 const toCelsius = (kelvin) => kelvin - 273.15;
 const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
@@ -153,4 +148,4 @@ function displayError(message) {
   card.appendChild(errorDisplay);
 }
 
-convertTempBtn();
+handleResize();
