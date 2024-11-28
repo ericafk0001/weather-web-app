@@ -8,10 +8,16 @@ let currentUnit = "F";
 let currentTemp = 0;
 let tempDisplay
 
+toggleButton.addEventListener("click", () => {
+  currentUnit = currentUnit === "F" ? "C" : "F";
+  toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
+  updateTemperatureDisplay(currentTemp, currentUnit);
+});
+
 const toCelsius = (kelvin) => kelvin - 273.15;
 const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
 
-function updateTemperatureDisplay(temp, unit) {
+const updateTemperatureDisplay = (temp, unit) => {
   let displayTemp;
 
   if (unit === "F") {
@@ -23,13 +29,6 @@ function updateTemperatureDisplay(temp, unit) {
     tempDisplay.textContent = `${displayTemp}°${unit}`;
   }
 };
-
-toggleButton.addEventListener("click", () => {
-  currentUnit = currentUnit === "F" ? "C" : "F";
-  toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
-  updateTemperatureDisplay(currentTemp, currentUnit);
-});
-
 
 
 weatherForm.addEventListener("submit", async (event) => {
@@ -80,7 +79,7 @@ function displayWeatherInfo(data) {
   const weatherEmoji = document.createElement("p");
 
   cityDisplay.textContent = city;
-  tempDisplay.textContent = `${((temp - 273.15) * (9 / 5) + 32).toFixed(1)}°F`;
+  updateTemperatureDisplay(temp, currentUnit);
   humidityDisplay.textContent = `Humidity: ${humidity}%`;
   descDisplay.textContent = description;
   weatherEmoji.textContent = getweatherEmoji(id);
@@ -91,7 +90,7 @@ function displayWeatherInfo(data) {
   descDisplay.classList.add("desc-display");
   weatherEmoji.classList.add("weather-emoji");
 
-  const tempValue = parseFloat(tempDisplay.textContent.slice(0, -2));
+  const tempValue = toFahrenheit(temp).toFixed(1);
   if (tempValue < 50) {
     tempDisplay.style.color = "#1999e3";
   } else if (tempValue >= 50 && tempValue <= 80) {
