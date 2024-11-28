@@ -1,4 +1,4 @@
-# Weather App
+# Weather Web App
 
 A responsive and interactive weather application that fetches real-time weather data for a user-specified city and allows users to toggle between Fahrenheit and Celsius. The app is designed to offer an intuitive user experience across various screen sizes.
 
