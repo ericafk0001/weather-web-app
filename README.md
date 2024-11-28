@@ -43,7 +43,7 @@ A responsive and interactive weather application that fetches real-time weather 
 ## Demo
 
 [website demo](https://ericafk0001.github.io/weather-web-app/) |
-[video demo](https://youtu.be/8hRi7gEnDJs)
+[video demo](https://youtu.be/Aha4Zo0bAww)
 
 ## Screenshots
 
