@@ -159,3 +159,19 @@ p {
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+@media (max-width: 712px) {
+  button[type="submit"] {
+    font-size: 0;
+  }
+  button[type="submit"]::after {
+    content: "✔";
+    font-size: 20px;
+    display: inline-block;
+  }
+
+  .city-input {
+    width: 200px;
+    font-size: 1.2rem;
+  }
+}

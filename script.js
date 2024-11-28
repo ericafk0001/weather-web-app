@@ -6,13 +6,30 @@ const apiKey = "98809575035e7d74e62b71d239fb1e98";
 
 let currentUnit = "F";
 let currentTemp = 0;
-let tempDisplay
+let tempDisplay;
 
-toggleButton.addEventListener("click", () => {
-  currentUnit = currentUnit === "F" ? "C" : "F";
+function convertTempBtn() {
+  toggleButton.addEventListener("click", () => {
+    currentUnit = currentUnit === "F" ? "C" : "F";
+    if (window.innerWidth < 712) {
+      toggleButton.textContent = currentUnit;
+    } else {
+      toggleButton.textContent = `Switch to °${
+        currentUnit === "F" ? "C" : "F"
+      }`;
+    }
+
+    updateTemperatureDisplay(currentTemp, currentUnit);
+  });
+}
+
+if (window.innerWidth < 712) {
+  toggleButton.textContent = currentUnit;
+} else {
   toggleButton.textContent = `Switch to °${currentUnit === "F" ? "C" : "F"}`;
-  updateTemperatureDisplay(currentTemp, currentUnit);
-});
+}
+
+window.addEventListener("resize", convertTempBtn());
 
 const toCelsius = (kelvin) => kelvin - 273.15;
 const toFahrenheit = (kelvin) => (kelvin - 273.15) * (9 / 5) + 32;
@@ -29,7 +46,6 @@ const updateTemperatureDisplay = (temp, unit) => {
     tempDisplay.textContent = `${displayTemp}°${unit}`;
   }
 };
-
 
 weatherForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -136,3 +152,5 @@ function displayError(message) {
   card.style.display = "flex";
   card.appendChild(errorDisplay);
 }
+
+convertTempBtn();
