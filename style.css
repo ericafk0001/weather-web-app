@@ -160,6 +160,12 @@ p {
   transform: translateY(2px);
 }
 
+@media (max-width: 890px) {
+  .card {
+    width: 60vw;
+  }
+}
+
 @media (max-width: 712px) {
   button[type="submit"] {
     font-size: 0;
@@ -173,5 +179,21 @@ p {
   .city-input {
     width: 200px;
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 667px) {
+  .city-display,
+  .temp-display {
+    font-size: 1.75rem;
+  }
+
+  .humidity-display,
+  .desc-display {
+    font-size: 1rem;
+  }
+
+  .weather-emoji {
+    font-size: 90px;
   }
 }
