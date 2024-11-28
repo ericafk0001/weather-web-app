@@ -32,11 +32,11 @@ A responsive and interactive weather application that fetches real-time weather 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/weather-app.git
+   git clone https://github.com/ericafk0001/weather-web-app
    ```
 2. Navigate to the project directory:
    ```bash
-   cd python-textbased-choice-game
+   cd weather-web-app
    ```
 3. Run the `index.html` file
 
@@ -48,3 +48,7 @@ A responsive and interactive weather application that fetches real-time weather 
 ## Screenshots
 
 ![image](https://cloud-3gto30eoq-hack-club-bot.vercel.app/0image.png)
+
+### openweathermap.org api condition id's:
+
+https://openweathermap.org/weather-conditions
